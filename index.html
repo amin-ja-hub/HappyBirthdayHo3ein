@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تبریک تولد</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Tahoma', sans-serif;
+            background: radial-gradient(circle, #ff99ff, #cc66ff, #9933cc);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            height: 100vh; /* ارتفاع ثابت */
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .message {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-top: 20px;
+            animation: fade-in 2s ease-in-out;
+        }
+
+        .cake-container {
+            margin-top: 50px;
+            position: relative;
+        }
+
+        .cake {
+            width: 200px;
+            height: 200px;
+            background: #ffcc99;
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .cake:before {
+            content: "حسین جان تولدت مبارک";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.2rem;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        .candle {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 30px;
+            background: #ff6666;
+            animation: bounce 1s infinite;
+        }
+
+        .flame {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 15px;
+            background: yellow;
+            border-radius: 50%;
+            animation: flicker 0.5s infinite alternate;
+        }
+
+        .split-message {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #fff;
+            display: none;
+            animation: fade-in 1.5s ease-in-out;
+        }
+
+        .plate-container {
+            display: none;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .plate {
+            width: 150px;
+            height: 150px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin: 0 10px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .plate .cake-slice {
+            width: 60%;
+            height: 60%;
+            background: #ffcc99;
+            margin: 20% auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            background-color: #ff6666;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #ff4444;
+            transform: scale(1.1);
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes flicker {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                transform: translateX(-50%) scale(1.2);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        #dance-gif {
+            position: absolute;
+            bottom: 6%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: auto;
+            display: none;
+            animation: fade-in 2s ease-in-out;
+        }
+        #dance-gif2 {
+            position: absolute;
+            bottom: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: auto;
+            display: none;
+            animation: fade-in 2s ease-in-out;
+        }        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>تولدت مبارک!</h1>
+        <div class="message">بهترین آرزوها برای تو در این روز خاص.</div>
+        <div class="cake-container">
+            <div class="cake" id="cake">
+                <div class="candle" id="candle">
+                    <div class="flame" id="flame"></div>
+                </div>
+            </div>
+        </div>
+        <div class="split-message" id="split-message">بیا کیک بقولیم</div>
+        <div class="button-container">
+            <button id="blow-candle">🎂 فوت کردن شمع</button>
+        </div>
+        <div class="plate-container" id="plate-container">
+            <div class="plate">
+                <div class="cake-slice"></div>
+            </div>
+            <div class="plate">
+                <div class="cake-slice"></div>
+            </div>
+        </div>
+        <img id="dance-gif" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/bce8a293783231.62642905ab2b0.gif" alt="رقص" />
+        <img id="dance-gif2" src="https://i.gifer.com/ACnY.gif" alt="رقص" />
+    </div>
+
+    <!-- Audio -->
+    <audio id="birthday-song">
+        <source src="https://dl.music-saz.ir/music/1403/07/30/Miras%20-%20Tavalod.mp3?_=1" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const blowCandleBtn = document.getElementById('blow-candle');
+        const cake = document.getElementById('cake');
+        const flame = document.getElementById('flame');
+        const splitMessage = document.getElementById('split-message');
+        const plateContainer = document.getElementById('plate-container');
+        const birthdaySong = document.getElementById('birthday-song');
+        const danceGif = document.getElementById('dance-gif');
+        const danceGif2 = document.getElementById('dance-gif2');
+        blowCandleBtn.addEventListener('click', () => {
+            flame.style.display = 'none';
+            blowCandleBtn.style.opacity = '0';
+            blowCandleBtn.style.pointerEvents = 'none';
+            setTimeout(() => {
+                blowCandleBtn.style.display = 'none';
+            }, 500);
+
+            birthdaySong.play();
+
+            setTimeout(() => {
+                cake.style.opacity = '0';
+                splitMessage.style.opacity = '1';
+                splitMessage.style.display = 'block';
+                plateContainer.style.opacity = '1';
+                plateContainer.style.display = 'flex';
+            }, 500);
+
+            setTimeout(() => {
+                splitMessage.style.opacity = '0';
+                plateContainer.style.opacity = '0';
+                setTimeout(() => {
+                    splitMessage.style.display = 'none';
+                    plateContainer.style.display = 'none';
+                    danceGif.style.display = 'block';
+                    danceGif2.style.display = 'block';
+                }, 500);
+            }, 7000);
+        });
+    </script>
+</body>
+</html>
+
